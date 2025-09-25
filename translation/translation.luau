@@ -9,19 +9,19 @@ local Translation = {}
 -- Dicionário de traduções
 -- Exemplo: Translations["en"] = {["Hello"] = "Hello", ["World"] = "World"}
 -- Translations["pt"] = {["Hello"] = "Olá", ["World"] = "Mundo"}
-Translation.Translations = Settings.Settings.Translations
+Translation.Translations = Settings.Translations
 
 -- Função para obter o idioma do jogador
 function Translation:GetPlayerLanguage()
     if LocalPlayer then
         return LocalPlayer.LocaleId:sub(1, 2) -- Retorna as duas primeiras letras do LocaleId (ex: "pt" de "pt-br")
     end
-    return Settings.Settings.DefaultLanguage -- Retorna o idioma padrão se não conseguir obter o do jogador
+    return Settings.DefaultLanguage -- Retorna o idioma padrão se não conseguir obter o do jogador
 end
 
 -- Função para traduzir um texto
 function Translation:Translate(textKey)
-    if not Settings.Settings.EnableTranslation then
+    if not Settings.EnableTranslation then
         return textKey -- Retorna a chave original se a tradução estiver desativada
     end
 
@@ -32,7 +32,7 @@ function Translation:Translate(textKey)
         return translatedText
     else
         -- Se não encontrar a tradução para o idioma do jogador, tenta o idioma padrão
-        local defaultLang = Settings.Settings.DefaultLanguage
+        local defaultLang = Settings.DefaultLanguage
         local defaultTranslatedText = self.Translations[defaultLang] and self.Translations[defaultLang][textKey]
         if defaultTranslatedText then
             warn("Translation not found for key '" .. textKey .. "' in language '" .. lang .. "'. Using default language '" .. defaultLang .. "'.")
