@@ -10,6 +10,84 @@ local CoreGui = game:GetService("CoreGui")
 local Settings = require(script.Parent.Parent.SettingsLib.Settings)
 local Translation = require(script.Parent.Parent.translation.translation)
 
+-- MakeDraggable Function
+local function MakeDraggable(TopBar, Frame)
+    local UserInputService = game:GetService("UserInputService")
+    local RunService = game:GetService("RunService")
+
+    local dragging
+    local dragInput
+    local dragStart
+    local startPosition
+
+    TopBar.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPosition = Frame.Position
+
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.Ended then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+
+    TopBar.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+
+    RunService.Heartbeat:Connect(function()
+        if dragging and dragInput then
+            local delta = dragInput.Position - dragStart
+            Frame.Position = UDim2.new(
+                startPosition.X.Scale, startPosition.X.Offset + delta.X,
+                startPosition.Y.Scale, startPosition.Y.Offset + delta.Y
+            )
+        end
+    end)
+end
+
+-- AutoUp Function
+local function AutoUp(ScrollingFrame)
+    local function updateCanvasSize()
+        local contentHeight = 0
+        for _, child in ipairs(ScrollingFrame:GetChildren()) do
+            if child:IsA("GuiObject") and child.Visible then
+                contentHeight = contentHeight + child.AbsoluteSize.Y + ScrollingFrame.UIListLayout.Padding.Offset
+            end
+        end
+        ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, contentHeight)
+    end
+
+    ScrollingFrame.ChildAdded:Connect(updateCanvasSize)
+    ScrollingFrame.ChildRemoved:Connect(updateCanvasSize)
+    ScrollingFrame.DescendantAdded:Connect(function(descendant)
+        if descendant:IsA("GuiObject") then
+            descendant.Changed:Connect(function(property)
+                if property == "Size" or property == "Visible" then
+                    updateCanvasSize()
+                end
+            end)
+        end
+    end)
+    updateCanvasSize()
+end
+
+-- EnterMouse Function
+local function EnterMouse(Object)
+    local OriginalColor = Object.BackgroundColor3
+    Object.MouseEnter:Connect(function()
+        Object.BackgroundColor3 = OriginalColor:Lerp(Color3.fromRGB(255, 255, 255), 0.1)
+    end)
+    Object.MouseLeave:Connect(function()
+        Object.BackgroundColor3 = OriginalColor
+    end)
+end
+
 -- Anti-AFK
 spawn(function()
     while wait(60) do
