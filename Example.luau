@@ -5,13 +5,28 @@
 -- Obter serviços do Roblox
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
+-- Mover os módulos para ReplicatedStorage para que os requires funcionem
+local SapphireHubUiFolder = Instance.new("Folder")
+SapphireHubUiFolder.Name = "SapphireHubUi"
+SapphireHubUiFolder.Parent = ReplicatedStorage
+
+-- Mover os módulos reais para a pasta
+local SapphireUiModule = script.Parent.SapphireUi.SapphireUi
+SapphireUiModule.Parent = SapphireHubUiFolder
+
+local SettingsLibFolder = script.Parent.SettingsLib
+SettingsLibFolder.Parent = SapphireHubUiFolder
+
+local TranslationFolder = script.Parent.translation
+TranslationFolder.Parent = SapphireHubUiFolder
+
 -- Requerer as bibliotecas corretamente
-local SapphireHubUi = loadstring(game:HttpGet("https://raw.githubusercontent.com/vitorffx/SapphireHubUi/refs/heads/main/SapphireUi/SapphireUi.luau"))()
-local Settings = loadstring(game:HttpGet("https://raw.githubusercontent.com/vitorffx/SapphireHubUi/refs/heads/main/SettingsLib/Settings.luau"))()
-local Translation = loadstring(game:HttpGet("https://raw.githubusercontent.com/vitorffx/SapphireHubUi/refs/heads/main/translation/translation.luau"))()
+local SapphireHubUi = require(ReplicatedStorage.SapphireHubUi.SapphireUi)
+local Settings = require(ReplicatedStorage.SapphireHubUi.SettingsLib.Settings)
+local Translation = require(ReplicatedStorage.SapphireHubUi.translation.translation)
 
 -- Configurar traduções (exemplo)
-if Settings and Settings.Settings and Settings.Settings.EnableTranslation then
+if Settings and Settings.EnableTranslation then
     Translation:AddTranslation("en", "Key System", "Key System")
     Translation:AddTranslation("pt", "Key System", "Sistema de Chave")
     Translation:AddTranslation("en", "Enter Key...", "Enter Key...")
@@ -116,9 +131,9 @@ local KeySystemSettingsSection = SettingsTab:Section({
 KeySystemSettingsSection:Toggle({
     Title = Translation:Translate("Enable Key System"),
     Content = "",
-    Default = Settings.Settings.EnableKeySystem,
+    Default = Settings.EnableKeySystem,
     Callback = function(value)
-        Settings.Settings.EnableKeySystem = value
+        Settings.EnableKeySystem = value
         print("Key System Enabled: " .. tostring(value))
     end
 })
@@ -127,9 +142,9 @@ KeySystemSettingsSection:TextInput({
     Title = Translation:Translate("Set Key"),
     Content = "",
     Placeholder = Translation:Translate("Enter new key"),
-    Default = Settings.Settings.Key,
+    Default = Settings.Key,
     Callback = function(text)
-        Settings.Settings.Key = text
+        Settings.Key = text
         print("New Key Set: " .. text)
     end
 })
