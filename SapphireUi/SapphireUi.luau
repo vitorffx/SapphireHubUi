@@ -98,7 +98,7 @@ spawn(function()
 end)
 
 -- Key System
-if Settings.Settings.EnableKeySystem then
+if Settings.EnableKeySystem then
     local KeySystemGui = Instance.new("ScreenGui", CoreGui)
     KeySystemGui.Name = "KeySystemGui"
     KeySystemGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -107,7 +107,7 @@ if Settings.Settings.EnableKeySystem then
     MainFrame.Size = UDim2.new(0, 300, 0, 150)
     MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
     MainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
-    MainFrame.BackgroundColor3 = Settings.Settings.BackgroundColor
+    MainFrame.BackgroundColor3 = Settings.BackgroundColor
     MainFrame.BorderColor3 = Color3.fromRGB(80, 80, 80)
     MainFrame.BorderSizePixel = 2
 
@@ -115,15 +115,15 @@ if Settings.Settings.EnableKeySystem then
     TitleLabel.Size = UDim2.new(1, 0, 0, 30)
     TitleLabel.Text = Translation:Translate("Key System")
     TitleLabel.Font = Enum.Font.GothamBold
-    TitleLabel.TextColor3 = Settings.Settings.TextColor
-    TitleLabel.BackgroundColor3 = Settings.Settings.BackgroundColor
+    TitleLabel.TextColor3 = Settings.TextColor
+    TitleLabel.BackgroundColor3 = Settings.BackgroundColor
 
     local KeyInput = Instance.new("TextBox", MainFrame)
     KeyInput.Size = UDim2.new(0, 260, 0, 40)
     KeyInput.Position = UDim2.new(0.5, -130, 0.5, -20)
     KeyInput.PlaceholderText = Translation:Translate("Enter Key...")
     KeyInput.Font = Enum.Font.Gotham
-    KeyInput.TextColor3 = Settings.Settings.TextColor
+    KeyInput.TextColor3 = Settings.TextColor
     KeyInput.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
 
     local SubmitButton = Instance.new("TextButton", MainFrame)
@@ -131,11 +131,11 @@ if Settings.Settings.EnableKeySystem then
     SubmitButton.Position = UDim2.new(0.5, -50, 0.8, 0)
     SubmitButton.Text = Translation:Translate("Submit")
     SubmitButton.Font = Enum.Font.GothamBold
-    SubmitButton.TextColor3 = Settings.Settings.TextColor
+    SubmitButton.TextColor3 = Settings.TextColor
     SubmitButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 
     local function checkKey(key)
-        if key == Settings.Settings.Key then
+        if key == Settings.Key then
             KeySystemGui:Destroy()
             return true
         else
@@ -168,7 +168,7 @@ function SapphireHubLib:Create(GuiConfig)
     local GuiConfig = GuiConfig or {}
     GuiConfig.Name = GuiConfig.Name or "SapphireHub"
     GuiConfig.Description = GuiConfig.Description or "v1.0"
-    GuiConfig.Color = GuiConfig.Color or Settings.Settings.MainColor
+    GuiConfig.Color = GuiConfig.Color or Settings.MainColor
     GuiConfig["Logo Info"] = GuiConfig["Logo Info"] or "rbxassetid://13698223452"
     GuiConfig["Name Info"] = GuiConfig["Name Info"] or LocalPlayer.Name
     GuiConfig["Info Color"] = GuiConfig["Info Color"] or Color3.fromRGB(25, 25, 25)
@@ -201,7 +201,7 @@ function SapphireHubLib:Create(GuiConfig)
     end
 
     Main.AnchorPoint = Vector2.new(0.5, 0.5)
-    Main.BackgroundColor3 = Settings.Settings.BackgroundColor
+    Main.BackgroundColor3 = Settings.BackgroundColor
     Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
     Main.BorderSizePixel = 0
     Main.Size = UDim2.new(0, 500, 0, 300)
@@ -236,7 +236,7 @@ function SapphireHubLib:Create(GuiConfig)
 
     TopDescription.Font = Enum.Font.GothamBold
     TopDescription.Text = Translation:Translate(GuiConfig.Description)
-    TopDescription.TextColor3 = Settings.Settings.DescriptionTextColor
+    TopDescription.TextColor3 = Settings.DescriptionTextColor
     TopDescription.TextSize = 14
     TopDescription.TextXAlignment = Enum.TextXAlignment.Left
     TopDescription.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -281,7 +281,7 @@ function SapphireHubLib:Create(GuiConfig)
     DropShadowHolder.Parent = Main
 
     DropShadow.Image = "rbxassetid://6015897843"
-    DropShadow.ImageColor3 = Settings.Settings.ShadowColor
+    DropShadow.ImageColor3 = Settings.ShadowColor
     DropShadow.ImageTransparency = 0.6
     DropShadow.ScaleType = Enum.ScaleType.Slice
     DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
@@ -384,7 +384,7 @@ function SapphireHubLib:Create(GuiConfig)
 
     NamePlayer.Font = Enum.Font.GothamBold
     NamePlayer.Text = Translation:Translate(GuiConfig["Name Info"])
-    NamePlayer.TextColor3 = Settings.Settings.DescriptionTextColor
+    NamePlayer.TextColor3 = Settings.DescriptionTextColor
     NamePlayer.TextSize = 12
     NamePlayer.TextWrapped = true
     NamePlayer.TextXAlignment = Enum.TextXAlignment.Left
@@ -500,7 +500,7 @@ function SapphireHubLib:Create(GuiConfig)
 
     LogTitle.Font = Enum.Font.GothamBold
     LogTitle.Text = Translation:Translate(GuiConfig["Name Player"])
-    LogTitle.TextColor3 = Settings.Settings.DescriptionTextColor
+    LogTitle.TextColor3 = Settings.DescriptionTextColor
     LogTitle.TextSize = 18
     LogTitle.TextXAlignment = Enum.TextXAlignment.Left
     LogTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -514,7 +514,7 @@ function SapphireHubLib:Create(GuiConfig)
 
     LogDescription.Font = Enum.Font.GothamBold
     LogDescription.Text = Translation:Translate(GuiConfig["Info Description"])
-    LogDescription.TextColor3 = Settings.Settings.DescriptionTextColor
+    LogDescription.TextColor3 = Settings.DescriptionTextColor
     LogDescription.TextSize = 12
     LogDescription.TextWrapped = true
     LogDescription.TextXAlignment = Enum.TextXAlignment.Left
@@ -522,8 +522,8 @@ function SapphireHubLib:Create(GuiConfig)
     LogDescription.BackgroundTransparency = 1
     LogDescription.BorderColor3 = Color3.fromRGB(0, 0, 0)
     LogDescription.BorderSizePixel = 0
-    LogDescription.Position = UDim2.new(0, 12, 0, 30)
-    LogDescription.Size = UDim2.new(0, 0, 0, 12)
+    LogDescription.Position = UDim2.new(0, 12, 0.5, 0)
+    LogDescription.Size = UDim2.new(1, -20, 0.5, 0)
     LogDescription.Name = "LogDescription"
     LogDescription.Parent = LogFrame
 
@@ -604,7 +604,7 @@ function SapphireHubLib:Create(GuiConfig)
         local UICorner2 = Instance.new("UICorner");
         local TabButton = Instance.new("TextButton");
 
-        Tab.BackgroundColor3 = Settings.Settings.MainColor
+        Tab.BackgroundColor3 = Settings.MainColor
         Tab.BorderColor3 = Color3.fromRGB(0, 0, 0)
         Tab.BorderSizePixel = 0
         Tab.Size = UDim2.new(1, 0, 0, 30)
@@ -618,7 +618,7 @@ function SapphireHubLib:Create(GuiConfig)
 
         TabButton.Font = Enum.Font.GothamBold
         TabButton.Text = Translation:Translate(TabName)
-        TabButton.TextColor3 = Settings.Settings.TextColor
+        TabButton.TextColor3 = Settings.TextColor
         TabButton.TextSize = 14
         TabButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         TabButton.BackgroundTransparency = 1
@@ -659,7 +659,7 @@ function SapphireHubLib:Create(GuiConfig)
             local ButtonText = Instance.new("TextLabel");
             local ButtonClick = Instance.new("TextButton");
 
-            Button.BackgroundColor3 = Settings.Settings.MainColor
+            Button.BackgroundColor3 = Settings.MainColor
             Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
             Button.BorderSizePixel = 0
             Button.Size = UDim2.new(1, 0, 0, 30)
@@ -673,7 +673,7 @@ function SapphireHubLib:Create(GuiConfig)
 
             ButtonText.Font = Enum.Font.GothamBold
             ButtonText.Text = Translation:Translate(ButtonName)
-            ButtonText.TextColor3 = Settings.Settings.TextColor
+            ButtonText.TextColor3 = Settings.TextColor
             ButtonText.TextSize = 14
             ButtonText.TextXAlignment = Enum.TextXAlignment.Left
             ButtonText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -710,7 +710,7 @@ function SapphireHubLib:Create(GuiConfig)
             local ToggleCircle = Instance.new("Frame");
             local UICorner8 = Instance.new("UICorner");
 
-            Toggle.BackgroundColor3 = Settings.Settings.MainColor
+            Toggle.BackgroundColor3 = Settings.MainColor
             Toggle.BorderColor3 = Color3.fromRGB(0, 0, 0)
             Toggle.BorderSizePixel = 0
             Toggle.Size = UDim2.new(1, 0, 0, 30)
@@ -724,7 +724,7 @@ function SapphireHubLib:Create(GuiConfig)
 
             ToggleText.Font = Enum.Font.GothamBold
             ToggleText.Text = Translation:Translate(ToggleName)
-            ToggleText.TextColor3 = Settings.Settings.TextColor
+            ToggleText.TextColor3 = Settings.TextColor
             ToggleText.TextSize = 14
             ToggleText.TextXAlignment = Enum.TextXAlignment.Left
             ToggleText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -751,7 +751,7 @@ function SapphireHubLib:Create(GuiConfig)
             ToggleButton.Parent = Toggle
 
             ToggleCircle.AnchorPoint = Vector2.new(0.5, 0.5)
-            ToggleCircle.BackgroundColor3 = Settings.Settings.TextColor
+            ToggleCircle.BackgroundColor3 = Settings.TextColor
             ToggleCircle.BorderColor3 = Color3.fromRGB(0, 0, 0)
             ToggleCircle.BorderSizePixel = 0
             ToggleCircle.Position = UDim2.new(0.25, 0, 0.5, 0)
@@ -769,7 +769,7 @@ function SapphireHubLib:Create(GuiConfig)
                 if Toggled then
                     TweenService:Create(ToggleCircle, TweenInfo.new(0.2), {Position = UDim2.new(0.75, 0, 0.5, 0), BackgroundColor3 = GuiConfig.Color}):Play()
                 else
-                    TweenService:Create(ToggleCircle, TweenInfo.new(0.2), {Position = UDim2.new(0.25, 0, 0.5, 0), BackgroundColor3 = Settings.Settings.TextColor}):Play()
+                    TweenService:Create(ToggleCircle, TweenInfo.new(0.2), {Position = UDim2.new(0.25, 0, 0.5, 0), BackgroundColor3 = Settings.TextColor}):Play()
                 end
                 CallBack(Toggled)
             end)
@@ -788,7 +788,7 @@ function SapphireHubLib:Create(GuiConfig)
             local SliderCircle = Instance.new("Frame");
             local UICorner12 = Instance.new("UICorner");
 
-            Slider.BackgroundColor3 = Settings.Settings.MainColor
+            Slider.BackgroundColor3 = Settings.MainColor
             Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
             Slider.BorderSizePixel = 0
             Slider.Size = UDim2.new(1, 0, 0, 40)
@@ -802,7 +802,7 @@ function SapphireHubLib:Create(GuiConfig)
 
             SliderText.Font = Enum.Font.GothamBold
             SliderText.Text = Translation:Translate(SliderName)
-            SliderText.TextColor3 = Settings.Settings.TextColor
+            SliderText.TextColor3 = Settings.TextColor
             SliderText.TextSize = 14
             SliderText.TextXAlignment = Enum.TextXAlignment.Left
             SliderText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -816,7 +816,7 @@ function SapphireHubLib:Create(GuiConfig)
 
             SliderValue.Font = Enum.Font.GothamBold
             SliderValue.Text = Default
-            SliderValue.TextColor3 = Settings.Settings.TextColor
+            SliderValue.TextColor3 = Settings.TextColor
             SliderValue.TextSize = 14
             SliderValue.TextXAlignment = Enum.TextXAlignment.Right
             SliderValue.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -828,7 +828,7 @@ function SapphireHubLib:Create(GuiConfig)
             SliderValue.Name = "SliderValue"
             SliderValue.Parent = Slider
 
-            SliderBar.BackgroundColor3 = Settings.Settings.TextColor
+            SliderBar.BackgroundColor3 = Settings.TextColor
             SliderBar.BorderColor3 = Color3.fromRGB(0, 0, 0)
             SliderBar.BorderSizePixel = 0
             SliderBar.Position = UDim2.new(0, 10, 0.7, 0)
@@ -909,7 +909,7 @@ function SapphireHubLib:Create(GuiConfig)
             local DropdownHolder = Instance.new("Frame");
             local UIListLayout4 = Instance.new("UIListLayout");
 
-            Dropdown.BackgroundColor3 = Settings.Settings.MainColor
+            Dropdown.BackgroundColor3 = Settings.MainColor
             Dropdown.BorderColor3 = Color3.fromRGB(0, 0, 0)
             Dropdown.BorderSizePixel = 0
             Dropdown.Size = UDim2.new(1, 0, 0, 30)
@@ -923,7 +923,7 @@ function SapphireHubLib:Create(GuiConfig)
 
             DropdownText.Font = Enum.Font.GothamBold
             DropdownText.Text = Translation:Translate(DropdownName)
-            DropdownText.TextColor3 = Settings.Settings.TextColor
+            DropdownText.TextColor3 = Settings.TextColor
             DropdownText.TextSize = 14
             DropdownText.TextXAlignment = Enum.TextXAlignment.Left
             DropdownText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -958,7 +958,7 @@ function SapphireHubLib:Create(GuiConfig)
             DropdownArrow.Name = "DropdownArrow"
             DropdownArrow.Parent = Dropdown
 
-            DropdownHolder.BackgroundColor3 = Settings.Settings.MainColor
+            DropdownHolder.BackgroundColor3 = Settings.MainColor
             DropdownHolder.BorderColor3 = Color3.fromRGB(0, 0, 0)
             DropdownHolder.BorderSizePixel = 0
             DropdownHolder.Position = UDim2.new(0, 0, 1, 5)
@@ -988,7 +988,7 @@ function SapphireHubLib:Create(GuiConfig)
                 local UICorner14 = Instance.new("UICorner");
                 local OptionButton = Instance.new("TextButton");
 
-                Option.BackgroundColor3 = Settings.Settings.MainColor
+                Option.BackgroundColor3 = Settings.MainColor
                 Option.BorderColor3 = Color3.fromRGB(0, 0, 0)
                 Option.BorderSizePixel = 0
                 Option.Size = UDim2.new(1, 0, 0, 20)
@@ -1002,7 +1002,7 @@ function SapphireHubLib:Create(GuiConfig)
 
                 OptionButton.Font = Enum.Font.GothamBold
                 OptionButton.Text = Translation:Translate(v)
-                OptionButton.TextColor3 = Settings.Settings.TextColor
+                OptionButton.TextColor3 = Settings.TextColor
                 OptionButton.TextSize = 12
                 OptionButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 OptionButton.BackgroundTransparency = 1
@@ -1042,7 +1042,7 @@ function SapphireHubLib:Create(GuiConfig)
             local UICorner20 = Instance.new("UICorner");
             local ColorPickerSVButton = Instance.new("TextButton");
 
-            ColorPicker.BackgroundColor3 = Settings.Settings.MainColor
+            ColorPicker.BackgroundColor3 = Settings.MainColor
             ColorPicker.BorderColor3 = Color3.fromRGB(0, 0, 0)
             ColorPicker.BorderSizePixel = 0
             ColorPicker.Size = UDim2.new(1, 0, 0, 30)
@@ -1056,7 +1056,7 @@ function SapphireHubLib:Create(GuiConfig)
 
             ColorPickerText.Font = Enum.Font.GothamBold
             ColorPickerText.Text = Translation:Translate(ColorPickerName)
-            ColorPickerText.TextColor3 = Settings.Settings.TextColor
+            ColorPickerText.TextColor3 = Settings.TextColor
             ColorPickerText.TextSize = 14
             ColorPickerText.TextXAlignment = Enum.TextXAlignment.Left
             ColorPickerText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1081,7 +1081,7 @@ function SapphireHubLib:Create(GuiConfig)
             ColorPickerButton.Parent = ColorPicker
 
             ColorPickerColor.AnchorPoint = Vector2.new(1, 0.5)
-            ColorPickerColor.BackgroundColor3 = Settings.Settings.MainColor
+            ColorPickerColor.BackgroundColor3 = Settings.MainColor
             ColorPickerColor.BorderColor3 = Color3.fromRGB(0, 0, 0)
             ColorPickerColor.BorderSizePixel = 0
             ColorPickerColor.Position = UDim2.new(1, -10, 0.5, 0)
@@ -1092,7 +1092,7 @@ function SapphireHubLib:Create(GuiConfig)
             UICorner16.CornerRadius = UDim.new(0, 3)
             UICorner16.Parent = ColorPickerColor
 
-            ColorPickerHolder.BackgroundColor3 = Settings.Settings.MainColor
+            ColorPickerHolder.BackgroundColor3 = Settings.MainColor
             ColorPickerHolder.BorderColor3 = Color3.fromRGB(0, 0, 0)
             ColorPickerHolder.BorderSizePixel = 0
             ColorPickerHolder.Position = UDim2.new(0, 0, 1, 5)
@@ -1266,7 +1266,7 @@ function SapphireHubLib:Create(GuiConfig)
             local TextBoxInput = Instance.new("TextBox");
             local UICorner22 = Instance.new("UICorner");
 
-            TextBox.BackgroundColor3 = Settings.Settings.MainColor
+            TextBox.BackgroundColor3 = Settings.MainColor
             TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
             TextBox.BorderSizePixel = 0
             TextBox.Size = UDim2.new(1, 0, 0, 40)
@@ -1280,7 +1280,7 @@ function SapphireHubLib:Create(GuiConfig)
 
             TextBoxText.Font = Enum.Font.GothamBold
             TextBoxText.Text = Translation:Translate(TextBoxName)
-            TextBoxText.TextColor3 = Settings.Settings.TextColor
+            TextBoxText.TextColor3 = Settings.TextColor
             TextBoxText.TextSize = 14
             TextBoxText.TextXAlignment = Enum.TextXAlignment.Left
             TextBoxText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1295,10 +1295,10 @@ function SapphireHubLib:Create(GuiConfig)
             TextBoxInput.Font = Enum.Font.Gotham
             TextBoxInput.PlaceholderText = Translation:Translate(DefaultText)
             TextBoxInput.Text = DefaultText
-            TextBoxInput.TextColor3 = Settings.Settings.TextColor
+            TextBoxInput.TextColor3 = Settings.TextColor
             TextBoxInput.TextSize = 14
             TextBoxInput.TextXAlignment = Enum.TextXAlignment.Left
-            TextBoxInput.BackgroundColor3 = Settings.Settings.TextColor
+            TextBoxInput.BackgroundColor3 = Settings.TextColor
             TextBoxInput.BorderColor3 = Color3.fromRGB(0, 0, 0)
             TextBoxInput.BorderSizePixel = 0
             TextBoxInput.Position = UDim2.new(0, 10, 0.5, 0)
@@ -1324,7 +1324,7 @@ function SapphireHubLib:Create(GuiConfig)
             local KeybindKey = Instance.new("TextLabel");
             local UICorner24 = Instance.new("UICorner");
 
-            Keybind.BackgroundColor3 = Settings.Settings.MainColor
+            Keybind.BackgroundColor3 = Settings.MainColor
             Keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
             Keybind.BorderSizePixel = 0
             Keybind.Size = UDim2.new(1, 0, 0, 30)
@@ -1338,7 +1338,7 @@ function SapphireHubLib:Create(GuiConfig)
 
             KeybindText.Font = Enum.Font.GothamBold
             KeybindText.Text = Translation:Translate(KeybindName)
-            KeybindText.TextColor3 = Settings.Settings.TextColor
+            KeybindText.TextColor3 = Settings.TextColor
             KeybindText.TextSize = 14
             KeybindText.TextXAlignment = Enum.TextXAlignment.Left
             KeybindText.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1363,13 +1363,13 @@ function SapphireHubLib:Create(GuiConfig)
             KeybindButton.Parent = Keybind
 
             KeybindKey.AnchorPoint = Vector2.new(1, 0.5)
-            KeybindKey.BackgroundColor3 = Settings.Settings.TextColor
+            KeybindKey.BackgroundColor3 = Settings.TextColor
             KeybindKey.BorderColor3 = Color3.fromRGB(0, 0, 0)
             KeybindKey.BorderSizePixel = 0
             KeybindKey.Position = UDim2.new(1, -10, 0.5, 0)
             KeybindKey.Size = UDim2.new(0, 50, 0, 20)
             KeybindKey.Text = "NONE"
-            KeybindKey.TextColor3 = Settings.Settings.MainColor
+            KeybindKey.TextColor3 = Settings.MainColor
             KeybindKey.TextSize = 14
             KeybindKey.Name = "KeybindKey"
             KeybindKey.Parent = Keybind
@@ -1403,7 +1403,7 @@ function SapphireHubLib:Create(GuiConfig)
             local ParagraphTitle = Instance.new("TextLabel");
             local ParagraphDescription = Instance.new("TextLabel");
 
-            Paragraph.BackgroundColor3 = Settings.Settings.MainColor
+            Paragraph.BackgroundColor3 = Settings.MainColor
             Paragraph.BorderColor3 = Color3.fromRGB(0, 0, 0)
             Paragraph.BorderSizePixel = 0
             Paragraph.Size = UDim2.new(1, 0, 0, 60)
@@ -1417,7 +1417,7 @@ function SapphireHubLib:Create(GuiConfig)
 
             ParagraphTitle.Font = Enum.Font.GothamBold
             ParagraphTitle.Text = Translation:Translate(ParagraphName)
-            ParagraphTitle.TextColor3 = Settings.Settings.TextColor
+            ParagraphTitle.TextColor3 = Settings.TextColor
             ParagraphTitle.TextSize = 14
             ParagraphTitle.TextXAlignment = Enum.TextXAlignment.Left
             ParagraphTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1431,7 +1431,7 @@ function SapphireHubLib:Create(GuiConfig)
 
             ParagraphDescription.Font = Enum.Font.Gotham
             ParagraphDescription.Text = Translation:Translate(ParagraphText)
-            ParagraphDescription.TextColor3 = Settings.Settings.DescriptionTextColor
+            ParagraphDescription.TextColor3 = Settings.DescriptionTextColor
             ParagraphDescription.TextSize = 12
             ParagraphDescription.TextWrapped = true
             ParagraphDescription.TextXAlignment = Enum.TextXAlignment.Left
@@ -1449,7 +1449,7 @@ function SapphireHubLib:Create(GuiConfig)
             local Divider = Instance.new("Frame");
             local UICorner26 = Instance.new("UICorner");
 
-            Divider.BackgroundColor3 = Settings.Settings.TextColor
+            Divider.BackgroundColor3 = Settings.TextColor
             Divider.BorderColor3 = Color3.fromRGB(0, 0, 0)
             Divider.BorderSizePixel = 0
             Divider.Size = UDim2.new(1, -20, 0, 1)
