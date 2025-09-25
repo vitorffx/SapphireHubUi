@@ -7,9 +7,9 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 -- Requerer as bibliotecas
-local SapphireHubUi = https://raw.githubusercontent.com/vitorffx/SapphireHubUi/refs/heads/main/SapphireUi/SapphireUi.luau
-local Settings = https://raw.githubusercontent.com/vitorffx/SapphireHubUi/refs/heads/main/SettingsLib/Settings.luau
-local Translation = https://raw.githubusercontent.com/vitorffx/SapphireHubUi/refs/heads/main/translation/translation.luau
+local SapphireHubUi = loadstring(game:HttpGet("https://raw.githubusercontent.com/vitorffx/SapphireHubUi/refs/heads/main/SapphireUi/SapphireUi.luau"))()
+local Settings = loadstring(game:HttpGet("https://raw.githubusercontent.com/vitorffx/SapphireHubUi/refs/heads/main/SettingsLib/Settings.luau"))()
+local Translation = loadstring(game:HttpGet("https://raw.githubusercontent.com/vitorffx/SapphireHubUi/refs/heads/main/translation/translation.luau"))()
 
 -- Configurar traduções (exemplo)
 -- Em um cenário real, estas traduções seriam carregadas de um servidor ou de um módulo mais complexo.
