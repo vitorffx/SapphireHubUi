@@ -7,8 +7,10 @@ local HttpService = game:GetService("HttpService")
 local CoreGui = game:GetService("CoreGui")
 
 -- Libraries
-local Settings = require(script.Parent.Parent.SettingsLib.Settings)
-local Translation = require(script.Parent.Parent.translation.translation)
+local Settings = require(game:GetService("ReplicatedStorage").SapphireHubUi.SettingsLib.Settings)
+
+local Translation = require(game:GetService("ReplicatedStorage").SapphireHubUi.translation.translation)
+
 
 -- MakeDraggable Function
 local function MakeDraggable(TopBar, Frame)
