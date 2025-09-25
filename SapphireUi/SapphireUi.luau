@@ -5,7 +5,7 @@ local TweenService = game:GetService("TweenService")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local HttpService = game:GetService("HttpService")
-local CoreGui = gethui and gethui() or game:GetService("CoreGui")
+local CoreGui = game:GetService("CoreGui")
 
 -- Libraries
 local Settings = require(game.ReplicatedStorage.SettingsLib.Settings)
