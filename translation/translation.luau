@@ -1,7 +1,8 @@
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
-local Settings = require(game.ReplicatedStorage.SettingsLib.Settings) -- Assumindo que SettingsLib estará em ReplicatedStorage
+local Settings = require(script.Parent.Parent.SettingsLib.Settings)
+
 
 local Translation = {}
 
