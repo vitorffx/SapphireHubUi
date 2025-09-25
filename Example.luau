@@ -1,4 +1,3 @@
-
 -- Este é um arquivo de exemplo para demonstrar o uso da SapphireHubUi.
 -- Para usar este script, você precisará ter os módulos SettingsLib e TranslationLib
 -- configurados corretamente no ReplicatedStorage do Roblox.
@@ -6,15 +5,13 @@
 -- Obter serviços do Roblox
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
--- Requerer as bibliotecas
+-- Requerer as bibliotecas corretamente
 local SapphireHubUi = loadstring(game:HttpGet("https://raw.githubusercontent.com/vitorffx/SapphireHubUi/refs/heads/main/SapphireUi/SapphireUi.luau"))()
 local Settings = loadstring(game:HttpGet("https://raw.githubusercontent.com/vitorffx/SapphireHubUi/refs/heads/main/SettingsLib/Settings.luau"))()
 local Translation = loadstring(game:HttpGet("https://raw.githubusercontent.com/vitorffx/SapphireHubUi/refs/heads/main/translation/translation.luau"))()
 
 -- Configurar traduções (exemplo)
--- Em um cenário real, estas traduções seriam carregadas de um servidor ou de um módulo mais complexo.
--- Para este exemplo, vamos adicionar algumas traduções diretamente.
-if Settings.Settings.EnableTranslation then
+if Settings and Settings.Settings and Settings.Settings.EnableTranslation then
     Translation:AddTranslation("en", "Key System", "Key System")
     Translation:AddTranslation("pt", "Key System", "Sistema de Chave")
     Translation:AddTranslation("en", "Enter Key...", "Enter Key...")
@@ -65,7 +62,6 @@ end
 local UI = SapphireHubUi:Create({
     Name = "SapphireHub",
     Description = "v1.0",
-    -- Outras configurações podem ser definidas aqui, como cores, logos, etc.
 })
 
 -- Criar abas
@@ -90,7 +86,7 @@ MainSection:Toggle({
 MainSection:TextInput({
     Title = Translation:Translate("Your Name"),
     Content = "",
-    ["Place Holder Text"] = Translation:Translate("Enter your name"),
+    Placeholder = Translation:Translate("Enter your name"),
     Default = "Player",
     Callback = function(text)
         print("Name entered: " .. text)
@@ -106,7 +102,7 @@ MainSection:Button({
             Title = "Notification",
             Description = "Button Clicked",
             Content = "You clicked the example button!",
-            Color = Color3.fromRGB(0, 255, 0) -- Green notification
+            Color = Color3.fromRGB(0, 255, 0)
         })
     end
 })
@@ -130,7 +126,7 @@ KeySystemSettingsSection:Toggle({
 KeySystemSettingsSection:TextInput({
     Title = Translation:Translate("Set Key"),
     Content = "",
-    ["Place Holder Text"] = Translation:Translate("Enter new key"),
+    Placeholder = Translation:Translate("Enter new key"),
     Default = Settings.Settings.Key,
     Callback = function(text)
         Settings.Settings.Key = text
@@ -146,7 +142,7 @@ local LanguageSettingsSection = SettingsTab:Section({
 LanguageSettingsSection:TextInput({
     Title = Translation:Translate("Select Language"),
     Content = "",
-    ["Place Holder Text"] = "en, pt, es, etc.",
+    Placeholder = "en, pt, es, etc.",
     Default = Translation:GetCurrentLanguage(),
     Callback = function(langCode)
         Translation:SetLanguage(langCode)
@@ -155,29 +151,25 @@ LanguageSettingsSection:TextInput({
             Title = "Language Changed",
             Description = "UI language updated",
             Content = "The UI language has been set to " .. langCode .. ".",
-            Color = Color3.fromRGB(0, 150, 255) -- Blue notification
+            Color = Color3.fromRGB(0, 150, 255)
         })
     end
 })
 
--- Exemplo de como usar a notificação
+-- Exemplo de notificação inicial
 SapphireHubUi:Notify({
     Title = "Bem-vindo!",
     Description = "SapphireHub está pronto.",
     Content = "Este é um exemplo de notificação.",
-    Color = Color3.fromRGB(153, 102, 204), -- Dark Amethyst
+    Color = Color3.fromRGB(153, 102, 204),
     Time = 0.5,
     Delay = 5
 })
 
--- Para abrir/fechar a UI, você pode usar um Keybind ou um botão no jogo.
--- Exemplo de Keybind (pode ser adicionado em um LocalScript separado ou aqui):
+-- Para abrir/fechar a UI com um Keybind:
+-- local UserInputService = game:GetService("UserInputService")
 -- UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
 --     if input.KeyCode == Enum.KeyCode.RightControl and not gameProcessedEvent then
 --         UI:ToggleUI()
 --     end
 -- end)
-
--- Note: Este script deve ser um LocalScript e estar em um local acessível pelo cliente,
--- como StarterPlayerScripts ou PlayerGui.
-
